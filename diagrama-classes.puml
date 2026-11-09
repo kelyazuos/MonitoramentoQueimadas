@@ -1,0 +1,52 @@
+
+@startuml
+title Sistema de Monitoramento de Queimadas no Maranhão
+
+abstract class Ocorrencia {
+  - id : int
+  - municipio : String
+  - data : String
+  - temperatura : double
+  - umidade : double
+  + getId() : int
+  + getMunicipio() : String
+  + getData() : String
+  + getTemperatura() : double
+  + getUmidade() : double
+  {abstract} + calcularRisco() : double
+}
+
+class QueimadaRural {
+  + calcularRisco() : double
+}
+
+class QueimadaUrbana {
+  + calcularRisco() : double
+}
+
+class GerenciadorOcorrencias {
+  - ocorrencias : ArrayList<Ocorrencia>
+  + cadastrar(ocorrencia : Ocorrencia) : boolean
+  + listar() : ArrayList<Ocorrencia>
+  + buscarPorId(id : int) : Ocorrencia
+  + alterar(id : int, nova : Ocorrencia) : boolean
+  + excluir(id : int) : boolean
+  - salvarDados() : void
+  - carregarDados() : void
+}
+
+class App {
+  + main(args : String[]) : void
+  - abrirCadastro(janela : JFrame) : void
+  - abrirConsulta(janela : JFrame) : void
+  - abrirEdicao(janela : JFrame) : void
+  - abrirExclusao(janela : JFrame) : void
+}
+
+Ocorrencia <|-- QueimadaRural
+Ocorrencia <|-- QueimadaUrbana
+
+GerenciadorOcorrencias o-- "0..*" Ocorrencia
+App --> GerenciadorOcorrencias
+
+@enduml

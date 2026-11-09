@@ -1,101 +1,212 @@
+
 # Sistema de Monitoramento de Queimadas no Maranhão
 
-## 1. Descrição do projeto
+## 1. Apresentação
 
-O Sistema de Monitoramento de Queimadas no Maranhão é uma aplicação desktop desenvolvida em Java, com o objetivo de registrar, organizar e consultar informações relacionadas a ocorrências de queimadas em municípios do estado do Maranhão.
+Projeto acadêmico desenvolvido para a disciplina de
+Paradigmas de Programação, da Universidade Federal
+do Maranhão (UFMA), como parte da 3ª avaliação.
 
-O projeto possui finalidade acadêmica e busca aplicar conceitos de Programação Orientada a Objetos (POO), utilizando uma interface gráfica para facilitar a interação com o usuário.
+O sistema consiste em uma aplicação desktop
+desenvolvida em Java, com interface gráfica
+construída utilizando a biblioteca Swing.
 
-## 2. Objetivos
+A aplicação permite cadastrar, consultar, alterar
+e excluir registros de ocorrências de queimadas
+em municípios do Maranhão.
 
-**Objetivo geral**
+## 2. Objetivo
 
-Desenvolver um sistema em Java para gerenciamento de registros de ocorrências de queimadas no Maranhão.
+Desenvolver uma aplicação que demonstre, na prática,
+a utilização dos conceitos de Programação Orientada
+a Objetos (POO), especialmente herança, polimorfismo,
+abstração e encapsulamento.
 
-**Objetivos específicos**
+O projeto também utiliza Collections para o
+gerenciamento dos registros e arquivos locais
+para o armazenamento permanente das informações.
 
-- Implementar uma interface gráfica utilizando Java Swing.
-- Permitir o cadastro de ocorrências de queimadas.
-- Consultar os registros cadastrados.
-- Editar informações das ocorrências.
-- Excluir registros.
-- Aplicar os conceitos de encapsulamento, herança, polimorfismo e abstração.
-- Implementar uma classificação didática de risco baseada em informações das ocorrências.
+## 3. Funcionalidades
 
-## 3. Tecnologias utilizadas
+O sistema oferece as seguintes operações:
 
-- Java JDK 21
-- Java Swing
-- Visual Studio Code
-- Extension Pack for Java
-- Git e GitHub
+- Cadastrar ocorrências rurais e urbanas.
+- Consultar as ocorrências em uma tabela.
+- Alterar os dados de registros existentes.
+- Excluir registros mediante confirmação.
+- Impedir o cadastro de IDs duplicados.
+- Validar os dados informados pelo usuário.
+- Calcular um índice didático de risco.
+- Salvar e recuperar os registros em arquivo CSV.
 
-## 4. Estrutura do projeto
+## 4. Tecnologias utilizadas
 
-```text
-MonitoramentoQueimadas/
-├── .vscode/
-├── bin/
-├── lib/
-├── src/
-│   ├── App.java
-│   ├── Ocorrencia.java
-│   ├── QueimadaRural.java
-│   ├── QueimadaUrbana.java
-│   └── GerenciadorOcorrencias.java
-├── .gitignore
-└── README.md
-```
+- Linguagem Java (JDK 21).
+- Biblioteca Swing (javax.swing).
+- Java Collections Framework (ArrayList).
+- Manipulação de arquivos com java.nio.file.
+- Visual Studio Code.
+- Git e GitHub.
 
-## 5. Funcionalidades previstas
+## 5. Organização das classes
 
-| Funcionalidade | Descrição |
-|---|---|
-| Cadastrar | Registrar novas ocorrências de queimadas |
-| Consultar | Visualizar ocorrências cadastradas |
-| Editar | Atualizar informações dos registros |
-| Excluir | Remover ocorrências |
-| Classificar risco | Calcular um indicador didático de risco |
+### Ocorrencia.java
 
-## 6. Programação Orientada a Objetos
+Classe abstrata que representa uma ocorrência
+de queimada.
 
-O projeto utiliza os seguintes conceitos:
+Contém os atributos:
 
-- **Encapsulamento:** proteção dos atributos das classes por meio de modificadores de acesso e métodos de consulta.
-- **Herança:** especialização da classe `Ocorrencia` em `QueimadaRural` e `QueimadaUrbana`.
-- **Polimorfismo:** implementação do método `calcularRisco()` de diferentes maneiras nas subclasses.
-- **Abstração:** utilização de uma classe abstrata para representar características comuns das ocorrências.
+- ID
+- Município
+- Data
+- Temperatura
+- Umidade
 
-## 7. Interface gráfica
+Declara o método abstrato calcularRisco(),
+que deve ser implementado pelas subclasses.
 
-A interface é desenvolvida utilizando Java Swing, com uma janela principal e botões destinados às operações de gerenciamento das ocorrências.
+### QueimadaRural.java
 
-## 8. Status do desenvolvimento
+Classe que herda de Ocorrencia.
 
-**Em desenvolvimento.**
+Implementa calcularRisco() utilizando uma
+fórmula específica para ocorrências rurais.
 
-Etapas iniciadas:
+### QueimadaUrbana.java
 
-- [x] Configuração do ambiente Java
-- [x] Criação do projeto no VS Code
-- [x] Desenvolvimento da janela gráfica inicial
-- [x] Estruturação das classes de domínio e gerenciamento
-- [x] Inicialização do repositório Git
-- [ ] Integração das operações de cadastro, consulta, edição e exclusão à interface
-- [ ] Testes das funcionalidades
-- [ ] Implementação e validação da persistência de dados
-- [ ] Documentação final
+Classe que herda de Ocorrencia.
 
-## 9. Execução
+Implementa calcularRisco() utilizando uma
+fórmula específica para ocorrências urbanas.
 
-Para executar o projeto durante o desenvolvimento:
+### GerenciadorOcorrencias.java
 
-1. Instale o JDK 21.
-2. Abra a pasta do projeto no VS Code.
-3. Instale a extensão Extension Pack for Java.
-4. Abra o arquivo `src/App.java`.
-5. Execute a classe principal utilizando a opção Run Java.
+Responsável pelo gerenciamento dos registros.
 
-## 10. Observações
+Utiliza ArrayList<Ocorrencia> para armazenar
+as ocorrências durante a execução.
 
-O sistema é um protótipo acadêmico. A classificação de risco prevista tem caráter demonstrativo e não substitui dados oficiais de monitoramento ambiental ou modelos científicos validados.
+Implementa os métodos:
+
+- cadastrar()
+- listar()
+- buscarPorId()
+- alterar()
+- excluir()
+
+Também realiza a leitura e a gravação
+dos registros em arquivo CSV.
+
+### App.java
+
+Classe principal da aplicação.
+
+Implementa a interface gráfica com Java Swing
+e permite ao usuário acessar as funcionalidades
+de cadastro, consulta, edição e exclusão.
+
+## 6. Conceitos de Programação Orientada a Objetos
+
+### Abstração
+
+A classe Ocorrencia é abstrata e define
+características comuns às ocorrências de queimadas.
+
+### Encapsulamento
+
+Os atributos são acessados por métodos específicos,
+como getTemperatura() e getUmidade().
+
+### Herança
+
+As classes QueimadaRural e QueimadaUrbana
+herdam características da classe Ocorrencia.
+
+### Polimorfismo
+
+O método calcularRisco() possui implementações
+diferentes nas subclasses QueimadaRural e
+QueimadaUrbana.
+
+Dessa forma, objetos de diferentes subclasses
+podem ser tratados por referências do tipo
+Ocorrencia, executando o comportamento
+correspondente ao seu tipo.
+
+### Collections
+
+O sistema utiliza ArrayList<Ocorrencia>
+para gerenciar dinamicamente os registros.
+
+## 7. Persistência de dados
+
+Os registros são armazenados no arquivo:
+
+dados/ocorrencias.csv
+
+O arquivo é criado automaticamente quando
+uma ocorrência é salva.
+
+Ao iniciar novamente o programa, os registros
+armazenados são recuperados.
+
+O campo município é codificado em Base64 para
+evitar conflitos com o separador utilizado
+no arquivo.
+
+A pasta dados não é enviada ao GitHub,
+conforme a configuração do .gitignore.
+
+## 8. Cálculo do índice de risco
+
+O sistema utiliza fórmulas didáticas distintas
+para as ocorrências rurais e urbanas.
+
+Queimada rural:
+
+R = (temperatura * 1.5) - (umidade * 0.5)
+
+Queimada urbana:
+
+R = (temperatura * 1.2) - (umidade * 0.3)
+
+Os resultados são limitados ao intervalo
+de 0 a 100.
+
+Essas fórmulas têm finalidade exclusivamente
+acadêmica e não representam um modelo científico
+validado de previsão de queimadas.
+
+## 9. Testes realizados
+
+Foram realizados testes manuais para verificar:
+
+- Cadastro de ocorrências rurais e urbanas.
+- Consulta dos registros cadastrados.
+- Alteração dos dados de uma ocorrência.
+- Exclusão de registros.
+- Identificação de IDs duplicados.
+- Recuperação dos dados após reiniciar o programa.
+
+## 10. Considerações finais
+
+O desenvolvimento do sistema permitiu aplicar
+conceitos fundamentais da Programação Orientada
+a Objetos em uma aplicação Java com interface
+gráfica.
+
+A utilização de herança e polimorfismo
+possibilitou a especialização dos tipos de
+ocorrência, enquanto o uso de Collections
+facilitou o gerenciamento dos registros.
+
+A persistência em arquivo permitiu manter
+as informações entre diferentes execuções
+do programa.
+
+
+# Universidade Federal do Maranhão (UFMA)
+# Disciplina: Paradigmas de Programação
+# Discentes: Kely Souza, Gabriel Gama, Matheus Alexsander
+# Projeto: Sistema de Monitoramento de Queimadas no Maranhão
