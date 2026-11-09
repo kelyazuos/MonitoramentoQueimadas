@@ -206,7 +206,7 @@ as informações entre diferentes execuções
 do programa.
 
 
-# Universidade Federal do Maranhão (UFMA)
-# Disciplina: Paradigmas de Programação
-# Discentes: Kely Souza, Gabriel Gama, Matheus Alexsander
-# Projeto: Sistema de Monitoramento de Queimadas no Maranhão
+### Universidade Federal do Maranhão (UFMA)
+### Disciplina: Paradigmas de Programação
+### Discentes: Kely Souza, Gabriel Gama, Matheus Alexsander
+### Projeto: Sistema de Monitoramento de Queimadas no Maranhão
