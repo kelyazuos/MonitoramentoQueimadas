@@ -1,0 +1,16 @@
+
+# Arquivos compilados do Java
+*.class
+bin/
+out/
+target/
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Configurações locais
+.vscode/
+
+# Dados locais gerados pelo sistema
+dados/
