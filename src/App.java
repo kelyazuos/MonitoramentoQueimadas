@@ -221,8 +221,7 @@ public class App {
                     continue;
                 }
 
-                if (campoTipo.getSelectedItem()
-                        .equals("Rural")) {
+                if ("Rural".equals(campoTipo.getSelectedItem())) {
 
                     return new QueimadaRural(
                         id, municipio, data,
